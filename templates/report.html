@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتيجة فحص التقرير - {{ report['id'] }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .header-logo {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .website-link {
+            text-align: center;
+            padding: 12px;
+            background-color: #fafafa;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+            font-size: 16px;
+            direction: ltr;
+        }
+
+        .validation-message {
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1.6;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .data-section {
+            padding: 20px;
+        }
+
+        .data-card {
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-label {
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .data-value {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .actions-section {
+            background-color: #fafafa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .action-link {
+            display: block;
+            color: #0056b3;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .action-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الشعار -->
+    <div class="header-logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="CPE Logo">
+    </div>
+
+        <!-- رابط الموقع -->
+        <div class="website-link">
+            www.upcelazhar.com
+        </div>
+
+        <!-- رسالة التأكيد -->
+        <div class="validation-message">
+            تم فحص صحة التقرير بنجاح ،برجاء عمل مقارنة مع النسخة الورقية منه والتاكد من التطابق التام بينهم وفي حالة وجود اي اختلاف برجاء التواصل مع المركز فورا
+        </div>
+
+        <!-- بيانات التقرير الديناميكية -->
+        <div class="data-section">
+            <div class="data-card">
+                <span class="data-label">عنوان التقرير</span>
+                <span class="data-value" style="direction: rtl;">{{ report['title'] }}</span>
+            </div>
+
+            <div class="data-card">
+                <span class="data-label">وصف التقرير</span>
+                <span class="data-value" style="direction: rtl;">{{ report['description'] }}</span>
+            </div>
+
+            <div class="data-card">
+                <span class="data-label">تاريخ الاعداد</span>
+                <span class="data-value" style="direction: ltr;">{{ report['prep_date'] }}</span>
+            </div>
+
+            <div class="data-card">
+                <span class="data-label">معد التقرير</span>
+                <span class="data-value" style="direction: ltr;">{{ report['preparer'] }}</span>
+            </div>
+        </div>
+
+        <!-- الأزرار والروابط -->
+        <div class="actions-section">
+            {% if report['pdf_filename'] %}
+                <a href="{{ url_for('download_file', filename=report['pdf_filename']) }}" class="action-link">تحميل وعرض التقرير</a>
+            {% else %}
+                <span style="color: #888; display: block; margin-bottom: 20px;">ملف التقرير غير متوفر للتحميل</span>
+            {% endif %}
+            <a href="#" class="action-link" style="margin-bottom: 0;">تسجيل الدخول</a>
+        </div>
+    </div>
+
+</body>
+</html>
