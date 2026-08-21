@@ -30,7 +30,7 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 # البريد الإلكتروني للمسؤول (الأدمن) المسموح له بفتح التقارير
-ADMIN_EMAIL = "admin@example.com"  # 👈 استبدله ببريدك الإلكتروني الحقيقي
+ADMIN_EMAIL = "mohamedbelal.s2@gmail.com"  # 👈 استبدله ببريدك الإلكتروني الحقيقي
 
 # ---------------------------------------------------------
 # 3. المسارات (Routes)
