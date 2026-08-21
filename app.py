@@ -20,7 +20,7 @@ if not firebase_admin._apps:
 db = firestore.client()
 
 # ⚠️ اكتب إيميلك الشخصي هنا ليصبح هو الحساب الوحيد المصرح له بفتح التقارير
-ADMIN_EMAIL = "your_email@gmail.com"
+ADMIN_EMAIL = "mohamedbelal.s2@gmail.com"
 
 
 @app.route('/')
